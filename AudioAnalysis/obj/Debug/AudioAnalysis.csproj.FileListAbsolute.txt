@@ -1,0 +1,8 @@
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.Form1.resources
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.Properties.Resources.resources
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.csproj.GenerateResource.Cache
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AudioAnalysis.exe
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AudioAnalysis.pdb
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.exe
+C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.pdb
