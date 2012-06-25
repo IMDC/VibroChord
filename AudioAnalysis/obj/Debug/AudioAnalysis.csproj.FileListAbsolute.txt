@@ -6,3 +6,5 @@ C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysi
 C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AudioAnalysis.pdb
 C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.exe
 C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.pdb
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.exe
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.pdb
