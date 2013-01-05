@@ -15,16 +15,32 @@ namespace AudioAnalysis
         private double lengthTime;
         private double lengthSamples;
         private int maximumSampleValue;
+        private double frequency;
 
         public Note()
         {
 
+        }
+        public double Frequency
+        {
+            get
+            {
+                return frequency;
+            }
+            set
+            {
+                frequency = value;
+            }
         }
         public double LengthTime
         {
             get
             {
                 return lengthTime;
+            }
+            set
+            {
+                lengthTime = value;
             }
         }
         public double EndTime
@@ -33,12 +49,20 @@ namespace AudioAnalysis
             {
                 return endTime;
             }
+            set
+            {
+                endTime = value;
+            }
         }
         public double StartTime
         {
             get
             {
                 return startTime;
+            }
+            set
+            {
+                startTime = value;
             }
         }
         public int MaxSampleValue

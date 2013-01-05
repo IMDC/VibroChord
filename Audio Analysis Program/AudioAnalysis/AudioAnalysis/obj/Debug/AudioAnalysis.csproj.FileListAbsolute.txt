@@ -8,3 +8,13 @@ C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysi
 C:\Users\Carmen\Desktop\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.pdb
 E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.exe
 E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.pdb
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AudioAnalysis.exe
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AudioAnalysis.pdb
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\ResolveAssemblyReference.cache
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.Form1.resources
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.Properties.Resources.resources
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.csproj.GenerateResource.Cache
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.Math.dll
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\Exocortex.DSP.v1.dll
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.dll
+E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.xml
