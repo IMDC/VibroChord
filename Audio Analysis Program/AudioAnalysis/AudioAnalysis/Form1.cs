@@ -42,8 +42,8 @@ namespace AudioAnalysis
             //wave.Read();
 
             //tempStream = new FileStream("E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Brendan\\brendan_happy_Track 1_1.wav", FileMode.Open);
-
-            /* ArrayList audioStreams = new ArrayList();
+           
+             ArrayList audioStreams = new ArrayList();
 
              for (int i = 0; i < 8; i++)
              {
@@ -51,9 +51,9 @@ namespace AudioAnalysis
              }
             
              textStream = new StreamReader(" E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Rob\\rob sad seperate tracks 16 bit\\Rob - Sad.txt");
-            */
 
-            ArrayList audioStreams = new ArrayList();
+             /*
+           ArrayList audioStreams = new ArrayList();
 
              for (int i = 0; i < 8; i++)
              {
@@ -61,7 +61,7 @@ namespace AudioAnalysis
              }
 
              textStream = new StreamReader(" E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Rob\\rob happy seperate tracks 16 bit\\Rob - Happy.txt");
-
+            */
             char[] seperator = {'\t' };
             int counter = 0;
             int trackNumber = 0;
@@ -266,6 +266,103 @@ namespace AudioAnalysis
                 averageNoteLength = 0;
                 numberofNotes = 0;
 
+            }
+
+            int[] trackNoteCounters = new int[8] {0,0,0,0,0,0,0,0};
+            Note pointerNote = null;
+            ArrayList linearNoteList = new ArrayList();
+            while (true)
+            {
+                ArrayList tempNoteList = new ArrayList();
+                for (int i = 0; i < 8; i++)
+                {
+                    try
+                    {
+                    tempNoteList.Add(((Note)((ArrayList)tracks[i])[trackNoteCounters[i]]));
+                    }
+                    catch(Exception ex){
+                        tempNoteList.Add(null);
+                    }
+
+
+                    //(tracks[i]));
+
+                }
+                Note previousNote = null;
+                Note firstNote = null;
+                int trackCounter = 0;
+                int currentTrack = 0;
+                foreach (Note note in tempNoteList)
+                {
+                    if (note == null)
+                    {
+                        trackCounter++;
+                        continue;
+                    }
+                    if (previousNote == null)
+                    {
+                        previousNote = note;
+                        currentTrack = trackCounter;
+
+
+                    }
+
+
+                    else if (note.StartTime < previousNote.StartTime)
+                    {
+                        previousNote = note;
+                        currentTrack = trackCounter;
+
+                    }
+                    trackCounter++;
+                }
+
+                pointerNote = previousNote;
+                try
+                {
+                    pointerNote.Track = currentTrack + 1;
+                }
+                catch (Exception ex)
+                {
+                    break;
+                }
+                linearNoteList.Add(pointerNote);
+                trackNoteCounters[currentTrack]++;
+
+                int endofTrackCounter = 0;
+                /*for (int i = 0; i < 8; i++)
+                {
+                    if (trackNoteCounters[i] > ((ArrayList)(tracks[i])).Count)
+                    {
+                        endofTrackCounter++;
+                    }
+                }
+                if (endofTrackCounter == 8)
+                {
+                    break;
+                }
+                else
+                {
+                    endofTrackCounter = 0;
+                }*/
+            }
+
+            Note beforeNote = null;
+            int trackJumps = 0;
+            int jumpLengths = 0;
+            foreach (Note note in linearNoteList)
+            {
+                if (beforeNote == null)
+                {
+                    beforeNote = note;
+                    continue;
+                }
+                if (beforeNote.Track != note.Track && beforeNote.StartTime != note.StartTime)
+                {
+                    trackJumps++;
+                    jumpLengths += Math.Abs(beforeNote.Track - note.Track);//.Add(Math.Abs(beforeNote.Track - note.Track));
+                }
+                beforeNote = note;
             }
 
             //averageNoteLength = averageNoteLength / (double)numberofNotes;

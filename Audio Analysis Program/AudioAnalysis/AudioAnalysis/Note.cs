@@ -16,10 +16,22 @@ namespace AudioAnalysis
         private double lengthSamples;
         private int maximumSampleValue;
         private double frequency;
+        private int track;
 
         public Note()
         {
 
+        }
+        public int Track
+        {
+            get
+            {
+                return track;
+            }
+            set
+            {
+                track = value;
+            }
         }
         public double Frequency
         {
