@@ -17,6 +17,9 @@ namespace AudioAnalysis
         private int maximumSampleValue;
         private double frequency;
         private int track;
+        private double amplitude;
+
+       
 
         public Note()
         {
@@ -117,6 +120,12 @@ namespace AudioAnalysis
             }
 
 
+        }
+
+        public double Amplitude
+        {
+            get { return amplitude; }
+            set { amplitude = value; }
         }
 
     }

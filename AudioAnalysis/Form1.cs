@@ -38,30 +38,21 @@ namespace AudioAnalysis
 
             ArrayList notes = new ArrayList();
 
-            //WaveFile wave = new WaveFile("C:\\Users\\Carmen\\Desktop\\Thesis\\Vibrotactile Compositions\\Brendan\\brendan_happy_Track 1_1.wav");
-            //wave.Read();
-
-            //tempStream = new FileStream("E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Brendan\\brendan_happy_Track 1_1.wav", FileMode.Open);
-           
+           //* Open audio streams **/
              ArrayList audioStreams = new ArrayList();
 
              for (int i = 0; i < 8; i++)
              {
-              audioStreams.Add(new FileStream(" E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Rob\\rob sad seperate tracks 16 bit\\rob_Track " + (i + 1) + ".wav", FileMode.Open));
-             }
-            
-             textStream = new StreamReader(" E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Rob\\rob sad seperate tracks 16 bit\\Rob - Sad.txt");
-
-             /*
-           ArrayList audioStreams = new ArrayList();
-
-             for (int i = 0; i < 8; i++)
-             {
-                 audioStreams.Add(new FileStream(" E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Rob\\rob happy seperate tracks 16 bit\\rob_happy_Track " + (i + 1) + ".wav", FileMode.Open));
+              audioStreams.Add(new FileStream(" E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Dennis\\Sad\\dennis sad sperate tracks 16 bit\\sad_Track " + (i + 1) + ".wav", FileMode.Open));
              }
 
-             textStream = new StreamReader(" E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Rob\\rob happy seperate tracks 16 bit\\Rob - Happy.txt");
-            */
+
+             /***** Read note information from file and create note objects for analysis *****/
+
+             OpenFileDialog openFileDialog = new OpenFileDialog();
+             openFileDialog.ShowDialog();
+             textStream = new StreamReader(openFileDialog.FileName);
+
             char[] seperator = {'\t' };
             int counter = 0;
             int trackNumber = 0;
@@ -80,7 +71,6 @@ namespace AudioAnalysis
 
                             String startTime = values[0];
                             String endTime = values[1];
-                            String length = values[2];
 
                             if (startTime.Contains("Track"))
                             {
@@ -94,6 +84,8 @@ namespace AudioAnalysis
                                 else
                                 {
                                     tracks.Add(notes);
+                                    
+                                    
                                     notes = new ArrayList();
                                     continue;
                                 }
@@ -116,7 +108,7 @@ namespace AudioAnalysis
                             newNote.StartTime = startTimeNum;
                             newNote.EndTime = endTimeNum;
                             newNote.LengthTime = lengthNum;
-
+                            Console.WriteLine(newNote.StartTime.ToString());
                             notes.Add(newNote);
                         }
                         catch (Exception ex)
@@ -129,21 +121,13 @@ namespace AudioAnalysis
 
             tracks.Add(notes);
 
-            //bool noteBeginningFound = false;
-            //int threshold = 100;
-            int returnValue = 2;
-           
+
+            int returnValue = 2;           
             ((FileStream) audioStreams[0]).Seek(44, 0);
-           // int maximumSampleValue = 0;
-           // bool lastValueZeroCounter = false;
-
             int windowCounter = 0;
-
             bool foundStart = false;
             bool foundEnd = false;
-
             int sampleRate = 44100;
-
             int currentNote = 0;
             int startSample = 0;
             int endSample = 0;
@@ -159,6 +143,11 @@ namespace AudioAnalysis
                 startSample = 0;
                 endSample = 0;
                 currentSample = 0;
+
+                if (((ArrayList)tracks[track]).Count == 0)
+                {
+                    continue;
+                }
 
                 while (returnValue != 0)
                 {
@@ -176,8 +165,6 @@ namespace AudioAnalysis
                     }
 
                     sample = (int)(BitConverter.ToInt16(buffer, 0));
-                    //sampleBuffer.Add(sample);
-                    // windowCounter++;
                     currentSample++;
 
                    
@@ -206,7 +193,7 @@ namespace AudioAnalysis
                     }
                     if (foundEnd)
                     {
-
+                        /*** calculate frequency of note ******************************/
                         Complex[] complex = new Complex[4096];
                         try
                         {
@@ -238,15 +225,34 @@ namespace AudioAnalysis
                         {
                             break;
                         }
+
+                        /*** calculate average amplitude of note ******************************/
+
+                        int amplitude = 0;
+                        for (int i = 0; i < noteSamples.Count; i++)
+                        {
+                            if ((int)noteSamples[i] > amplitude)
+                            {
+                                amplitude = (int)noteSamples[i];
+                            }
+                        }
+
+                        ((Note)(((ArrayList)tracks[track])[currentNote])).Amplitude = amplitude;
+                    
                     }
+
+
 
 
 
                 }
             }
+         
 
             double averageNoteLength = 0;
+            double averageNoteLengthSong = 0;
             int numberofNotes = 0;
+            int numberofNotesInSong = 0;
             ArrayList trackAverageNotes = new ArrayList();
             ArrayList trackNumberofNotes = new ArrayList();
            
@@ -257,7 +263,9 @@ namespace AudioAnalysis
                 for (int note = 0; note < ((ArrayList)tracks[track]).Count; note++)
                 {
                     averageNoteLength += ((Note)(((ArrayList)tracks[track])[note])).LengthTime;
+                    averageNoteLengthSong += ((Note)(((ArrayList)tracks[track])[note])).LengthTime;
                     numberofNotes++;
+                    numberofNotesInSong++;
                 }
                 averageNoteLength = averageNoteLength / (int)numberofNotes;
                 trackAverageNotes.Add(averageNoteLength);
@@ -267,7 +275,7 @@ namespace AudioAnalysis
                 numberofNotes = 0;
 
             }
-
+            averageNoteLengthSong = averageNoteLengthSong / numberofNotesInSong;
             int[] trackNoteCounters = new int[8] {0,0,0,0,0,0,0,0};
             Note pointerNote = null;
             ArrayList linearNoteList = new ArrayList();
@@ -365,9 +373,29 @@ namespace AudioAnalysis
                 beforeNote = note;
             }
 
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.ShowDialog();
+            saveFileDialog.DefaultExt = "txt";
             //averageNoteLength = averageNoteLength / (double)numberofNotes;
            // System.IO.FileStream fs = System.IO.File.Create("C:\\Users\\Carmen\\Desktop\\Thesis\\Vibrotactile Compositions\\Brendan\\brendan_happy_Track 1_1.text");
-            StreamWriter outfile = new StreamWriter("E:\\SVNs\\Thesis\\Vibrotactile Compositions\\Brendan\\brendan_happy_Track 1_1.text");
+            StreamWriter outfile = new StreamWriter(saveFileDialog.FileName);
+
+            double averageAmplitudePerSong = 0;
+            int totalNoteNumber = 0;
+            for (int track = 0; track < 8; track++)
+            {
+                totalNoteNumber = totalNoteNumber + ((ArrayList)tracks[track]).Count;
+                double averageAmplitude = 0;
+                for (int note = 0; note < ((ArrayList)tracks[track]).Count; note++)
+                {
+                    averageAmplitude = averageAmplitude + ((Note)(((ArrayList)tracks[track])[note])).Amplitude;
+                    averageAmplitudePerSong = averageAmplitudePerSong + ((Note)(((ArrayList)tracks[track])[note])).Amplitude;
+                }
+                averageAmplitude = averageAmplitude / ((ArrayList)tracks[track]).Count;
+                outfile.WriteLine("Track " + track + " Average Amplitude: " + averageAmplitude);
+            }
+            averageAmplitudePerSong = averageAmplitudePerSong / totalNoteNumber;
+            outfile.WriteLine("Song Average Amplitude: " + averageAmplitudePerSong);
 
             for (int track = 0; track < 8; track++)
             {
@@ -375,7 +403,7 @@ namespace AudioAnalysis
 
                 for (int note = 0; note < ((ArrayList)tracks[track]).Count; note++)
                 {
-                    outfile.WriteLine((track+1) + "\t" + ((Note)(((ArrayList)tracks[track])[note])).Frequency + "\t" + ((Note)(((ArrayList)tracks[track])[note])).StartTime + "\t" + ((Note)(((ArrayList)tracks[track])[note])).EndTime);
+                    outfile.WriteLine((track + 1) + "\t" + ((Note)(((ArrayList)tracks[track])[note])).Frequency + "\t" + ((Note)(((ArrayList)tracks[track])[note])).StartTime + "\t" + ((Note)(((ArrayList)tracks[track])[note])).EndTime + "\t" + ((Note)(((ArrayList)tracks[track])[note])).LengthTime + "\t" + ((Note)(((ArrayList)tracks[track])[note])).Amplitude);
                 }
 
             }
