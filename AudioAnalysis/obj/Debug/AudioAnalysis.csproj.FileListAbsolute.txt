@@ -18,3 +18,16 @@ E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AFor
 E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\Exocortex.DSP.v1.dll
 E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.dll
 E:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.xml
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.exe
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.pdb
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AudioAnalysis.exe
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AudioAnalysis.pdb
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.Math.dll
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\Exocortex.DSP.v1.dll
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.dll
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\bin\Debug\AForge.xml
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\ResolveAssemblyReference.cache
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.Form1.resources
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\AudioAnalysis.Properties.Resources.resources
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\ResGen.read.1.tlog
+D:\SVNs\Thesis\Audio Analysis Program\AudioAnalysis\AudioAnalysis\obj\Debug\ResGen.write.1.tlog
