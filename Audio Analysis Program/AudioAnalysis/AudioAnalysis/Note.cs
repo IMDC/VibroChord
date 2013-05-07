@@ -18,6 +18,11 @@ namespace AudioAnalysis
         private double frequency;
         private int track;
         private double amplitude;
+        private int song;
+
+
+        private int composer;
+
 
        
 
@@ -25,6 +30,19 @@ namespace AudioAnalysis
         {
 
         }
+        public int Composer
+        {
+            get { return composer; }
+            set { composer = value; }
+        }
+
+
+        public int Song
+        {
+          get { return song; }
+          set { song = value; }
+        }
+
         public int Track
         {
             get
@@ -80,17 +98,7 @@ namespace AudioAnalysis
                 startTime = value;
             }
         }
-        public int MaxSampleValue
-        {
-            get
-            {
-               return maximumSampleValue;
-            }
-            set
-            {
-                maximumSampleValue = value;
-            }
-        }
+       
         public int StartSample
         {
             get
