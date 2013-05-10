@@ -52,7 +52,7 @@ namespace AudioAnalysis
 
              for (int i = 0; i < 8; i++)
              {
-              audioStreams.Add(new FileStream("D:\\SVNs\\Thesis\\Vibrotactile Compositions\\Dennis\\Sad\\dennis sad sperate tracks 16 bit\\sad_Track " + (i + 1) + ".wav", FileMode.Open));
+              //audioStreams.Add(new FileStream("D:\\SVNs\\Thesis\\Vibrotactile Compositions\\Dennis\\Sad\\dennis sad sperate tracks 16 bit\\sad_Track " + (i + 1) + ".wav", FileMode.Open));
              }
 
 
@@ -131,174 +131,174 @@ namespace AudioAnalysis
             tracks.Add(notes);
 
 
-            int returnValue = 2;           
-            ((FileStream) audioStreams[0]).Seek(44, 0);
-            int windowCounter = 0;
-            bool foundStart = false;
-            bool foundEnd = false;
-            int sampleRate = 44100;
-            int currentNote = 0;
-            int startSample = 0;
-            int endSample = 0;
+           // int returnValue = 2;           
+           //((FileStream) audioStreams[0]).Seek(44, 0);
+           // int windowCounter = 0;
+           // bool foundStart = false;
+           // bool foundEnd = false;
+           // int sampleRate = 44100;
+           // int currentNote = 0;
+           // int startSample = 0;
+           // int endSample = 0;
 
-            ArrayList noteSamples = new ArrayList();
-            ArrayList noteSamplesList = new ArrayList();
+           // ArrayList noteSamples = new ArrayList();
+           // ArrayList noteSamplesList = new ArrayList();
 
-            for (int track = 0; track < 8; track++)
-            {
-                currentNote = 0;
-                foundStart = false;
-                foundEnd = false;
-                startSample = 0;
-                endSample = 0;
-                currentSample = 0;
+           // for (int track = 0; track < 8; track++)
+           // {
+           //     currentNote = 0;
+           //     foundStart = false;
+           //     foundEnd = false;
+           //     startSample = 0;
+           //     endSample = 0;
+           //     currentSample = 0;
 
-                if (((ArrayList)tracks[track]).Count == 0)
-                {
-                    continue;
-                }
+           //     if (((ArrayList)tracks[track]).Count == 0)
+           //     {
+           //         continue;
+           //     }
 
-                while (returnValue != 0 && currentNote < ((ArrayList)tracks[track]).Count)
-                {
+           //     while (returnValue != 0 && currentNote < ((ArrayList)tracks[track]).Count)
+           //     {
 
-                    try
-                    {
-                        returnValue = ((FileStream)audioStreams[track]).Read(buffer, 0, 2);//wave.getDataPoint(currentSample);
+           //         try
+           //         {
+           //             returnValue = ((FileStream)audioStreams[track]).Read(buffer, 0, 2);//wave.getDataPoint(currentSample);
 
 
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        break;
-                    }
+           //         }
+           //         catch (Exception ex)
+           //         {
+           //             MessageBox.Show(ex.Message);
+           //             break;
+           //         }
 
-                    sample = (int)(BitConverter.ToInt16(buffer, 0));
-                    currentSample++;
+           //         sample = (int)(BitConverter.ToInt16(buffer, 0));
+           //         currentSample++;
 
                    
 
-                    startSample =  (int)((((Note)(((ArrayList)tracks[track])[currentNote])).StartTime) * (double)sampleRate);
-                    startSample += 200;
-                    endSample = (int)((((Note)(((ArrayList)tracks[track])[currentNote])).EndTime) * (double)sampleRate);
-                    endSample += -200;
-                    if (startSample == currentSample)
-                    {
-                        startSample = currentSample;
-                        foundStart = true;
-                        noteSamples = new ArrayList();
+           //         startSample =  (int)((((Note)(((ArrayList)tracks[track])[currentNote])).StartTime) * (double)sampleRate);
+           //         startSample += 200;
+           //         endSample = (int)((((Note)(((ArrayList)tracks[track])[currentNote])).EndTime) * (double)sampleRate);
+           //         endSample += -200;
+           //         if (startSample == currentSample)
+           //         {
+           //             startSample = currentSample;
+           //             foundStart = true;
+           //             noteSamples = new ArrayList();
 
-                    }
-                    if (foundStart)
-                    {
-                        noteSamples.Add(sample);
-                    }
-                    if (endSample == currentSample)
-                    {
-                        foundStart = false;
-                        foundEnd = true;
-                        noteSamplesList.Add(noteSamples);
+           //         }
+           //         if (foundStart)
+           //         {
+           //             noteSamples.Add(sample);
+           //         }
+           //         if (endSample == currentSample)
+           //         {
+           //             foundStart = false;
+           //             foundEnd = true;
+           //             noteSamplesList.Add(noteSamples);
 
-                    }
-                    if (foundEnd)
-                    {
-                        int previousNumber = 0;
-                        int currentNumber = 0;
-                        int firstSampleNumber = 0;
-                        int secondSampleNumber = 0;
-                        int waveCount = 0;
-                        int waveLength = 0;
-                        ArrayList waveLengths = new ArrayList();
-                        for (int i = 1; i < noteSamples.Count; i++)
-                        {
-                            currentNumber = (int)noteSamples[i];
-                            previousNumber = (int)noteSamples[i-1];
-                            if (previousNumber < 0 && currentNumber > 0)
-                            {
-                                //found first zero crossing
-                                firstSampleNumber = i;
+           //         }
+           //         if (foundEnd)
+           //         {
+           //             int previousNumber = 0;
+           //             int currentNumber = 0;
+           //             int firstSampleNumber = 0;
+           //             int secondSampleNumber = 0;
+           //             int waveCount = 0;
+           //             int waveLength = 0;
+           //             ArrayList waveLengths = new ArrayList();
+           //             for (int i = 1; i < noteSamples.Count; i++)
+           //             {
+           //                 currentNumber = (int)noteSamples[i];
+           //                 previousNumber = (int)noteSamples[i-1];
+           //                 if (previousNumber < 0 && currentNumber > 0)
+           //                 {
+           //                     //found first zero crossing
+           //                     firstSampleNumber = i;
 
-                            }
-                            else if (previousNumber > 0 && currentNumber < 0)
-                            {
-                                //found second zero crossing
-                                secondSampleNumber = i;
-                                waveLength+= (secondSampleNumber - firstSampleNumber) * 2;
-                                waveLengths.Add((secondSampleNumber - firstSampleNumber) * 2);
-                                waveCount++;
-                            }
+           //                 }
+           //                 else if (previousNumber > 0 && currentNumber < 0)
+           //                 {
+           //                     //found second zero crossing
+           //                     secondSampleNumber = i;
+           //                     waveLength+= (secondSampleNumber - firstSampleNumber) * 2;
+           //                     waveLengths.Add((secondSampleNumber - firstSampleNumber) * 2);
+           //                     waveCount++;
+           //                 }
                            
 
-                        }
-                        //waveLength = (int)(waveLength / waveCount);
-                       //double frequency = 44100 / waveLength;
+           //             }
+           //             //waveLength = (int)(waveLength / waveCount);
+           //            //double frequency = 44100 / waveLength;
 
                         
-                        /*** calculate frequency of note ******************************/
-                       /* Complex[] complex = new Complex[4096];
-                        try
-                        {
-                            for (int i = 0; i < 4096 - 1; i++)
-                            {
-                                complex[i] = new Complex((int)noteSamples[i], 0);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
+           //             /*** calculate frequency of note ******************************/
+           //            /* Complex[] complex = new Complex[4096];
+           //             try
+           //             {
+           //                 for (int i = 0; i < 4096 - 1; i++)
+           //                 {
+           //                     complex[i] = new Complex((int)noteSamples[i], 0);
+           //                 }
+           //             }
+           //             catch (Exception ex)
+           //             {
 
-                        }
+           //             }
 
-                        FourierTransform.FFT(complex, FourierTransform.Direction.Forward);
-                        double maximum = 0.0;
-                        int maxSlot = 0;
-                        for (int i = 0; i < complex.Length / 2; i++)
-                        {
-                            if (complex[i].Re > maximum)
-                            {
-                                maximum = complex[i].Re;
-                                maxSlot = i;
-                            }
-                        }*/
-                        //((Note)(((ArrayList)tracks[track])[currentNote])).Frequency = frequency;//maxSlot * sampleRate / 4096; //(double)zeroCrossing / ((double)((Note)notes[currentNote]).LengthTime);
+           //             FourierTransform.FFT(complex, FourierTransform.Direction.Forward);
+           //             double maximum = 0.0;
+           //             int maxSlot = 0;
+           //             for (int i = 0; i < complex.Length / 2; i++)
+           //             {
+           //                 if (complex[i].Re > maximum)
+           //                 {
+           //                     maximum = complex[i].Re;
+           //                     maxSlot = i;
+           //                 }
+           //             }*/
+           //             //((Note)(((ArrayList)tracks[track])[currentNote])).Frequency = frequency;//maxSlot * sampleRate / 4096; //(double)zeroCrossing / ((double)((Note)notes[currentNote]).LengthTime);
                         
-                        foundEnd = false;
-                        if (currentNote > ((ArrayList)(tracks[track])).Count - 1)
-                        {
-                            break;
-                        }
+           //             foundEnd = false;
+           //             if (currentNote > ((ArrayList)(tracks[track])).Count - 1)
+           //             {
+           //                 break;
+           //             }
 
-                        /*** calculate average amplitude of note ******************************/
+           //             /*** calculate average amplitude of note ******************************/
 
-                        int amplitude = 0;
-                        for (int i = 0; i < noteSamples.Count; i++)
-                        {
-                            if ((int)noteSamples[i] > amplitude)
-                            {
-                                amplitude = (int)noteSamples[i];
-                            }
-                        }
-                        if (amplitude == 0)
-                        {
-                            int p = 0;
-                        }
-                        if (track == 5)
-                        {
-                            int p = 0;
-                        }
+           //             int amplitude = 0;
+           //             for (int i = 0; i < noteSamples.Count; i++)
+           //             {
+           //                 if ((int)noteSamples[i] > amplitude)
+           //                 {
+           //                     amplitude = (int)noteSamples[i];
+           //                 }
+           //             }
+           //             if (amplitude == 0)
+           //             {
+           //                 int p = 0;
+           //             }
+           //             if (track == 5)
+           //             {
+           //                 int p = 0;
+           //             }
 
-                        ((Note)(((ArrayList)tracks[track])[currentNote])).Amplitude = amplitude;
-                        ((Note)(((ArrayList)tracks[track])[currentNote])).Song = song;
-                        ((Note)(((ArrayList)tracks[track])[currentNote])).Composer = composer;
+           //             ((Note)(((ArrayList)tracks[track])[currentNote])).Amplitude = amplitude;
+           //             ((Note)(((ArrayList)tracks[track])[currentNote])).Song = song;
+           //             ((Note)(((ArrayList)tracks[track])[currentNote])).Composer = composer;
 
-                        currentNote++;
-                    }
-
-
+           //             currentNote++;
+           //         }
 
 
 
-                }
-            }
+
+
+           //     }
+           // }
          
 
             double averageNoteLength = 0;
@@ -431,9 +431,15 @@ namespace AudioAnalysis
             int changeInAmplitude = 0;
             double shortestNote = 999999;
             double longestNote = 0;
+            int upJumpsPerSecond = 0;
+            int downJumpsPerSecond = 0;
+
+
+            double averageTrackPosition = 0.0;
 
             foreach (Note note in linearNoteList)
             {
+                averageTrackPosition += note.Track;
                 if (beforeNote == null)
                 {
                     beforeNote = note;
@@ -443,6 +449,15 @@ namespace AudioAnalysis
                 {
                     trackJumps++;
                     jumpLengths += Math.Abs(beforeNote.Track - note.Track);//.Add(Math.Abs(beforeNote.Track - note.Track));
+                    if (beforeNote.Track < note.Track)
+                    {
+                        upJumpsPerSecond++;
+                    }
+                    else if (beforeNote.Track > note.Track)
+                    {
+                        downJumpsPerSecond++;
+                    }
+
                 }
                 if (note.LengthTime < shortestNote)
                 {
@@ -456,6 +471,10 @@ namespace AudioAnalysis
                 beforeNote = note;
             }
             changeInAmplitude = changeInAmplitude / linearNoteList.Count;
+
+            averageTrackPosition = averageTrackPosition / linearNoteList.Count;
+
+
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.ShowDialog();
